@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>therack.</title>
+
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* HOMEPAGE - FULL SCREEN HERO */
+
+        .hero-section {
+            width: 100%;
+            height: calc(100vh - 120px); /* Adjust screen height minus header/announcement */
+            min-height: 550px;
+            padding: 0; /* Remove padding for full edge-to-edge layout */
+            margin: 0;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 55px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .explore-btn {
+            background: #f4f1ea;
+            color: #222;
+            border: none;
+            padding: 15px 35px;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .explore-btn:hover {
+            background: #222;
+            color: white;
+        }
+
+        .explore-btn i {
+            margin-left: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: calc(100vh - 90px);
+                padding: 0;
+            }
+
+            .hero-image-wrapper {
+                height: 100%;
+            }
+
+            .hero-content {
+                left: 7%;
+                right: 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        wear it, use it, make it yours
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <!-- LEFT: MAIN NAVIGATION -->
+        <div class="header-left">
+
+            <button class="menu-toggle-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">HOME</a></li>
+                    <li><a href="#" class="nav-link" data-page="shop">SHOPS</a></li>
+                    <li><a href="#" class="nav-link" data-page="lookbook">LOOKBOOK</a></li>
+                    <li><a href="#" class="nav-link" data-page="archives">ARCHIVES</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">ABOUT US</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <!-- CENTER: BRAND LOGO -->
+        <div class="header-center">
+            <a href="#" class="brand-logo" data-page="home">
+                therack.
+            </a>
+        </div>
+
+        <!-- RIGHT: SEARCH & ICONS -->
+        <div class="header-right">
+
+            <!-- Search Button -->
+            <div class="search-trigger" id="searchTrigger">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Find It</span>
+            </div>
+
+            <!-- Flag Icon -->
+            <a href="#" class="nav-icon flag-icon" id="flagTrigger" title="Language">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="20" height="14">
+                    <rect fill="#FF0000" width="3" height="1"/>
+                    <rect fill="#FFFFFF" y="1" width="3" height="1"/>
+                </svg>
+            </a>
+
+            <!-- Account Button -->
+            <a href="#" class="nav-icon" id="accountTrigger" title="Account">
+                <i class="fa-regular fa-user"></i>
+            </a>
+
+            <!-- Cart Button -->
+            <a href="#" class="nav-icon cart-icon-btn" id="cartTrigger" title="Shopping Cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+
+        <div class="drawer-header">
+            <h3>MENU</h3>
+
+            <button class="close-drawer" id="closeMobileMenu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <ul class="mobile-nav-list">
+            <li><a href="#" class="mobile-nav-link" data-page="home">HOME</a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="shop">SHOP</a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="lookbook">LOOKBOOK</a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="archives">ARCHIVES</a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="about">ABOUT US</a></li>
+        </ul>
+
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+
+        <div class="search-overlay-content">
+
+            <button class="close-search" id="closeSearch">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h2>Find Your Favourite</h2>
+
+            <div class="search-input-wrapper">
+                <input
+                    type="text"
+                    id="searchInputLive"
+                    placeholder="Search apparel, brands, or categories..."
+                >
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="search-quick-tags">
+                <span>Most Searched:</span>
+
+                <button class="tag-btn" data-query="New Balance">New Balance</button>
+                <button class="tag-btn" data-query="Nike">Nike</button>
+                <button class="tag-btn" data-query="Adidas">Adidas</button>
+                <button class="tag-btn" data-query="Vans">Vans</button>
+            </div>
+
+            <div class="search-results-container" id="searchResultsContainer"></div>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent">
+
+        <!-- 1. HOMEPAGE -->
+        <section class="page-view active" id="page-home">
+
+            <div class="hero-section">
+
+                <div class="hero-image-wrapper">
+
+                    <img
+                        src="images/home2.jpeg"
+                        alt="homepict"
+                    >
+
+                    <div class="hero-content">
+
+                        <h1>wear it, use it<br>make it yours.</h1>
+
+                        <p>good taste, good finds.</p>
+
+                        <button class="explore-btn" onclick="navigateTo('shop')">
+                            Explore
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 2. SHOP PAGE -->
+        <section class="page-view" id="page-shop">
+
+            <div class="container shop-layout-container">
+
+                <!-- FILTER SIDEBAR -->
+                <aside class="shop-sidebar">
+
+                    <div class="filter-group">
+
+                        <h4>Category</h4>
+
+                        <ul class="filter-list" id="categoryFilterList">
+
+                            <li>
+                                <a href="#" class="filter-option active" data-category="All">
+                                    All Products
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="filter-option" data-category="Outerwear">
+                                    Outerwear
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="filter-option" data-category="Innerwear">
+                                    Innerwear
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="filter-option" data-category="Pants">
+                                    Pants
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="filter-option" data-category="Dresses">
+                                    Dresses
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="filter-option" data-category="Shoes">
+                                    Shoes
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <!-- BRAND FILTER -->
+                    <div class="filter-group">
+
+                        <h4>Brand</h4>
+
+                        <ul class="filter-list" id="brandFilterList">
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" class="brand-chk" value="All" checked>
+                                    All Brands
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" class="brand-chk" value="New Balance">
+                                    New Balance
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" class="brand-chk" value="Nike">
+                                    Nike
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" class="brand-chk" value="Adidas">
+                                    Adidas
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" class="brand-chk" value="Vans">
+                                    Vans
+                                </label>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <!-- COLOR FILTER -->
+                    <div class="filter-group">
+                        <h4>Color</h4>
+                        <div class="color-swatch-filter">
+                            <span class="c-swatch" style="background:#111111" data-color="Black" title="Black"></span>
+                            <span class="c-swatch" style="background:#FFFFFF; border: 1px solid #d1d1d1;" data-color="White" title="White"></span>
+                            <span class="c-swatch" style="background:#808080" data-color="Grey" title="Grey"></span>
+                            <span class="c-swatch" style="background:#D32F2F" data-color="Red" title="Red"></span>
+                            <span class="c-swatch" style="background:#4B5320" data-color="Green" title="Green"></span>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <!-- PRODUCT CATALOG -->
+                <div class="shop-main-content">
+
+                    <div class="shop-toolbar">
+
+                        <span id="productCountLabel">
+                            Showing products
+                        </span>
+
+                        <div class="toolbar-controls">
+
+                            <input
+                                type="text"
+                                id="shopSearchInput"
+                                placeholder="Search products..."
+                                class="shop-search-input"
+                            >
+
+                            <select id="sortSelect" class="sort-dropdown">
+
+                                <option value="featured">Order</option>
+                                <option value="latest">Latest</option>
+                                <option value="low-high">Price: Lowest</option>
+                                <option value="high-low">Price: Highest</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-grid" id="shopProductGrid"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 3. PRODUCT DETAIL -->
+        <section class="page-view" id="page-detail">
+
+            <div class="container">
+
+                <button class="back-btn" onclick="goBackFromDetail()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    back to catalog
+                </button>
+
+                <div class="pdp-wrapper" id="pdpContainer"></div>
+
+                <div class="related-section">
+
+                    <h3>you might like</h3>
+
+                    <div class="product-grid" id="relatedProductsGrid"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 4. ABOUT US -->
+        <section class="page-view" id="page-about">
+            <div class="container-narrow about-content">
+                <div class="about-row-split">
+
+                    <div class="about-img">
+                        <img src="images/about.jpeg" alt="about us">
+                    </div>
+
+                    <div class="about-text">
+                        <h3 class="about-title">therack.</h3>
+                        <p class="about-desc">
+                            The internet is already cluttered with endless scrolling and faceless algorithms. We didn’t build another marketplace to add to the noise.
+                        </p>
+                        <p class="about-desc">
+                            The Rack is a digital room for the deliberate. We treat our platform less like a giant, soulless warehouse and more like a carefully curated rack at a hidden vintage store. Every item here is handpicked, holding onto a distinct character that refuses to blend into the background.
+                        </p>
+                        <p class="about-desc">
+                            No flashing banners, no frantic countdown timers. Just a quiet corner of the web where independent creators, collectors, and seekers meet.
+                        </p>
+                        <p class="about-desc highlight-end">
+                            Scroll slowly. Take your time. Find something with a soul.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. LOOKBOOK -->
+        <section class="page-view" id="page-lookbook">
+            <div class="container lookbook-gallery">
+
+                <div class="lookbook-item">
+                    <img src="images/model1.jpeg" alt="Look 1">
+                    <div class="lookbook-caption">
+                        <span>look 01 / 03</span>
+                        <h4>New Balance FuelCell Rebel - Run Yourway</h4>
+                    </div>
+                </div>
+
+                <div class="lookbook-item">
+                    <img src="images/model2.jpeg" alt="Look 2">
+                    <div class="lookbook-caption">
+                        <span>LOOK 02 / 03</span>
+                        <h4>Vans Old Skool Surf</h4>
+                    </div>
+                </div>
+
+                <div class="lookbook-item aspect-16-9">
+                    <img src="images/model3.jpeg" alt="Look 3">
+                    <div class="lookbook-caption">
+                        <span>LOOK 03 / 03</span>
+                        <h4>Adidas Spezial Skateboarding</h4>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. ARCHIVES -->
+        <section class="page-view" id="page-archives">
+
+            <div class="container">
+
+                <div class="product-grid" id="archivesGrid"></div>
+
+            </div>
+
+        </section>
+
+        <!-- 7. SHOPPING CART -->
+        <section class="page-view" id="page-cart">
+
+            <div class="container cart-page-container">
+
+                <h2>SHOPPING CART</h2>
+
+                <div class="cart-content-wrapper" id="cartContentWrapper"></div>
+
+            </div>
+
+        </section>
+
+        <!-- 8. CHECKOUT -->
+        <section class="page-view" id="page-checkout">
+
+            <div class="container checkout-container">
+
+                <h2>CHECKOUT</h2>
+
+                <form id="checkoutForm" class="checkout-grid">
+
+                    <div class="checkout-form-column">
+
+                        <h3>1. Buyer Information</h3>
+
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="chkName" placeholder="Enter your full name" required>
+                            <span class="error-msg" id="errName">Full name is required.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="chkEmail" placeholder="name@email.com" required>
+                            <span class="error-msg" id="errEmail">Please enter a valid email address.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="chkPhone" placeholder="08xxxxxxxxxx" required>
+                            <span class="error-msg" id="errPhone">Phone number is required.</span>
+                        </div>
+
+                        <h3>2. Shipping Address</h3>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label>Province *</label>
+                                <input type="text" id="chkProvince" placeholder="Province" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>City / Regency *</label>
+                                <input type="text" id="chkCity" placeholder="City" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label>District *</label>
+                                <input type="text" id="chkDistrict" placeholder="District" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Postal Code *</label>
+                                <input type="text" id="chkPostal" placeholder="Postal code" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Full Address *</label>
+
+                            <textarea
+                                id="chkAddress"
+                                rows="3"
+                                placeholder="Street name, house number, and address details..."
+                                required
+                            ></textarea>
+
+                            <span class="error-msg" id="errAddress">
+                                Full shipping address is required.
+                            </span>
+
+                        </div>
+
+                        <h3>3. Shipping Method</h3>
+
+                        <div class="shipping-options">
+
+                            <label class="radio-card">
+
+                                <input
+                                    type="radio"
+                                    name="shippingMethod"
+                                    value="Standard"
+                                    data-cost="35000"
+                                    checked
+                                >
+
+                                <div>
+                                    <strong>Standard Shipping</strong>
+                                    <span>2–4 Business Days — IDR 35,000</span>
+                                </div>
+
+                            </label>
+
+                            <label class="radio-card">
+
+                                <input
+                                    type="radio"
+                                    name="shippingMethod"
+                                    value="Express"
+                                    data-cost="75000"
+                                >
+
+                                <div>
+                                    <strong>Express Shipping</strong>
+                                    <span>1 Business Day — IDR 75,000</span>
+                                </div>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ORDER SUMMARY -->
+                    <div class="checkout-summary-column">
+
+                        <div class="summary-card">
+
+                            <h3>Order Summary</h3>
+
+                            <div id="checkoutItemsList" class="chk-items-list"></div>
+
+                            <hr>
+
+                            <div class="summary-line">
+                                <span>Subtotal</span>
+                                <span id="chkSubtotal">IDR 0</span>
+                            </div>
+
+                            <div class="summary-line">
+                                <span>Shipping Fee</span>
+                                <span id="chkShippingFee">IDR 35,000</span>
+                            </div>
+
+                            <hr>
+
+                            <div class="summary-line total-line">
+                                <span>Total Payment</span>
+                                <span id="chkTotalDue">IDR 0</span>
+                            </div>
+
+                            <button type="submit" class="btn-primary-dark">
+                                PROCEED TO PAYMENT
+                            </button>
+
+                            <span class="boundary-notice-text">
+                                <i class="fa-solid fa-lock"></i>
+                                Safe simulated transaction.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ACCOUNT MODAL -->
+    <div class="modal-backdrop" id="accountModal">
+
+        <div class="modal-box">
+
+            <button class="close-modal" id="closeAccountModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3>SIGN IN</h3>
+
+            <p>
+                log in to keep track of your purchases.
+            </p>
+
+            <form id="accountLoginForm" novalidate>
+
+                <div class="form-group">
+
+                    <label>email</label>
+
+                    <input type="email" id="loginEmailInput" placeholder="name@email.com">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>password</label>
+
+                    <input type="password" id="loginPasswordInput" placeholder="••••••••">
+
+                </div>
+
+                <button type="submit" class="btn-primary-dark">
+                    sign in
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- LOGIN NOTIFICATION MODAL -->
+    <div class="modal-backdrop" id="loginNotifModal">
+
+        <div class="modal-box payment-boundary-box">
+
+            <button class="close-modal" type="button" onclick="closeLoginNotifModal()" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="boundary-icon" id="loginNotifIcon">
+                <i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>
+            </div>
+
+            <h3 id="loginNotifTitle">SIGNED IN</h3>
+
+            <p id="loginNotifMessage">
+                you're in!! welcome back to therack.
+            </p>
+
+            <div style="display: flex; justify-content: center; margin-top: 1.25rem;">
+                <button type="button" class="btn-primary-dark" style="width: 100%; max-width: 240px;" onclick="closeLoginNotifModal()">
+                    OK
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PAYMENT BOUNDARY MODAL -->
+    <div class="modal-backdrop" id="paymentBoundaryModal">
+
+        <div class="modal-box payment-boundary-box">
+
+            <div class="boundary-icon" id="paymentStatusIcon">
+                <i class="fa-solid fa-circle-xmark" style="color:#d32f2f;"></i>
+            </div>
+
+            <h3 id="paymentStatusTitle">PAYMENT DECLINED</h3>
+
+            <p id="paymentStatusMessage">
+                Your payment was declined due to a system error.
+                Please try again in a few moments.
+            </p>
+
+            <div class="order-id-box" id="finalOrderIdDisplay">
+                Order ID: #RB-89214
+            </div>
+
+            <p class="boundary-subtext" id="paymentErrorDetail">
+                Status: Declined (System Error) — No charges were made.
+            </p>
+
+            <button type="button" class="btn-primary-dark" onclick="closeModals()">
+                CLOSE &amp; TRY AGAIN
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- CART NOTIFICATION MODAL -->
+    <div class="modal-backdrop" id="cartNotifModal">
+
+        <div class="modal-box payment-boundary-box">
+
+            <button class="close-modal" type="button" onclick="closeCartNotifModal()" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="boundary-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+
+            <h3>ADDED TO CART</h3>
+
+            <p id="cartNotifMessage">
+                Product has been added to your shopping cart.
+            </p>
+
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem;">
+                <button type="button" class="btn-primary-dark" style="flex: 1; min-width: 140px;" onclick="closeCartNotifModal(); renderCartPage(); navigateTo('cart');">
+                    VIEW CART
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+            <!-- WHAT'S NEW -->
+            <div class="footer-col newsletter-col">
+
+                <h5>what's new</h5>
+
+                <p>
+                    stay updated on our latest drops.
+                </p>
+
+                <form class="newsletter-form" id="newsletterForm" novalidate>
+
+                    <input
+                        type="email"
+                        id="newsletterEmailInput"
+                        placeholder="drop your email here."
+                    >
+
+                    <button type="submit">
+                        enter <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- BRAND -->
+            <div class="footer-col brand-col">
+
+                <h4 class="footer-logo">therack.</h4>
+
+                <p>
+                    wear it, use it, make it yours.
+                </p>
+
+                <div class="social-links">
+
+                    <a href="https://www.instagram.com/bucklleys" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@arbi_yo" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                    <a href="https://open.spotify.com/user/arbiiii1" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+                        <i class="fa-brands fa-spotify"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 therack. all rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- NEWSLETTER NOTIFICATION MODAL -->
+    <div class="modal-backdrop" id="newsletterNotifModal">
+
+        <div class="modal-box payment-boundary-box">
+
+            <button class="close-modal" type="button" onclick="closeNewsletterNotifModal()" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="boundary-icon" id="newsletterNotifIcon">
+                <i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>
+            </div>
+
+            <h3 id="newsletterNotifTitle">SUBSCRIBED</h3>
+
+            <p id="newsletterNotifMessage">
+                thanks for keeping up with us. more good finds coming your way.
+            </p>
+
+            <div style="display: flex; justify-content: center; margin-top: 1.25rem;">
+                <button type="button" class="btn-primary-dark" style="width: 100%; max-width: 240px;" onclick="closeNewsletterNotifModal()">
+                    OK
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
